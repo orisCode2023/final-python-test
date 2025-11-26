@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, field_validator
+from pydantic import BaseModel, field_validator
 from enum import Enum
 
 class Assign(str, Enum):
@@ -6,13 +6,15 @@ class Assign(str, Enum):
     WAITING = "waiting" 
 
 class Soldier(BaseModel):
-    personal_number: int = Field(ge=8)
+    personal_number: int
     name : str
     last_name : str
-    sex : str
+    gender : str
     home_town : str
     base_distence : int
     status_assign : Assign 
+    room_number : int | None = None
+    dorm_number: int | None = None
 
     @field_validator('personal_number')
     @classmethod
@@ -21,6 +23,4 @@ class Soldier(BaseModel):
         if not new_pn.startswith('8'):
             raise ValueError("The number must start with 8")
     
-
-
     
