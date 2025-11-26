@@ -13,6 +13,8 @@ class Soldier(BaseModel):
     home_town : str
     base_distence : int
     status_assign : Assign 
+    room_number : int | None = None
+    dorm_number: int | None = None
 
     @field_validator('personal_number')
     @classmethod

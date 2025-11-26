@@ -39,13 +39,13 @@ class Controller:
     def assign_soldiers(self):
         waiting_list = []
         assign_soldeiers_counter = 0
+        final_update_soldier = []
         for i in range(len(self.sort_by_distance())):
+            soldier = self.update_soldier()
             if self.dorm.dorm_number > 2:
                 waiting_list.append(soldier)
             
             else:
-
-                soldier = self.update_soldier()
                 self.room.soldiers_per_room.append(soldier)
                 assign_soldeiers_counter += 1
 
@@ -60,11 +60,24 @@ class Controller:
                         self.dorm.rooms = []
                         self.dorm.dorm_number += 1
 
+            final_update_soldier.append(soldier)
+
+
             
 
-        return {"waiting_list": len(waiting_list), "assigned" : assign_soldeiers_counter}
-        # return waiting_list
-    
+        return {"waiting_list": len(waiting_list), "assigned" : assign_soldeiers_counter, "soldiers": final_update_soldier}
+        
 
-temp = Controller()
-print(temp.assign_soldiers()) 
+    # def get_spesific_soldier_values(self):
+    #     lst = self.assign_soldiers['soldiers']
+    #     for soldier in lst:
+    #         print(soldier['personal_number'])
+    #         print(soldier['status_assign'])
+    #         print(soldier['room_number'])
+    #         print(soldier['dorm_number'])
+            
+            
+
+con = Controller()
+print(con.get_spesific_soldier_values())
+
