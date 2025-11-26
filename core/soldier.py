@@ -21,6 +21,8 @@ class Soldier(BaseModel):
         if not new_pn.startswith('8'):
             raise ValueError("The number must start with 8")
     
-
+    @classmethod
+    def get_home_distence(cls):
+        return cls.base_distence
 
     
